@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Ledger Access</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f8ff; /* light blue */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+    }
+    h2 {
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    #dropdown-container {
+        display: none;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    select {
+        font-size: 1.2em;
+        padding: 10px;
+        width: 300px;
+    }
+    button {
+        font-size: 1.2em;
+        padding: 10px 20px;
+        margin-top: 10px;
+        cursor: pointer;
+        border-radius: 8px;
+        border: none;
+        background-color: #0077cc;
+        color: white;
+    }
+    button:hover {
+        background-color: #005fa3;
+    }
+</style>
+</head>
+<body>
+
+<h2>Select the student ledger you want from the drop-down list below.</h2>
+
+<button id="showDropdownBtn">Show List</button>
+
+<div id="dropdown-container">
+    <select id="fileSelect">
+        <option value="">-- Select a file --</option>
+        <!-- Example file options: replace these with your real Google Drive links -->
+        <option value="https://docs.google.com/spreadsheets/d/1C7RqU-l9ccVfeWwpvDvuyBwwIeApH65RyqILaSEb3AY/edit?usp=drive_link">Student Ledger - Student #1</option>
+        <option value="https://docs.google.com/spreadsheets/d/1swY5KBzpIbeSB5amXXT9nQ0zQh0pgyxI-rVZ8hdD6sQ/edit?usp=drive_link">Student Ledger - Student #2</option>
+        <option value="https://docs.google.com/spreadsheets/d/12Z3vTa-PDxeRLvZLDmlNgkxNv-dJteBLaXsYTFlVBSg/edit?usp=drive_link">Student Ledger - Student #3</option>
+    </select>
+    <br>
+    <button id="submitBtn">SUBMIT</button>
+</div>
+
+<script>
+    const showBtn = document.getElementById('showDropdownBtn');
+    const dropdownContainer = document.getElementById('dropdown-container');
+    const submitBtn = document.getElementById('submitBtn');
+    const fileSelect = document.getElementById('fileSelect');
+
+    // Show the drop-down list when clicking the button
+    showBtn.addEventListener('click', () => {
+        dropdownContainer.style.display = 'block';
+        showBtn.style.display = 'none';
+    });
+
+    // Open the selected file in a new tab
+    submitBtn.addEventListener('click', () => {
+        const selectedFile = fileSelect.value;
+        if(selectedFile) {
+            window.open(selectedFile, '_blank');
+        } else {
+            alert('Please select a file from the list.');
+        }
+    });
+</script>
+
+</body>
+</html>
